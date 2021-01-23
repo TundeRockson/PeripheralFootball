@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jan  8 23:49:59 2021
+
+@author: tunderockson
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import glob
+
+path = r'/Users/tunderockson/Desktop/Sports Data Science/english-premier-league_zip/archive'
+all_files = glob.glob(path + "/*.csv")
+
+li=[]
+for filename in all_files:
+    df = pd.read_csv(filename, index_col=None, header=0)
+    li.append(df)
+
+
+frame = pd.concat(li, axis=0, ignore_index=True)
+pl_df =frame.drop(['Div','B365H', 'B365D', 'B365A', 'BWH', 'BWD',
+       'BWA', 'IWH', 'IWD', 'IWA', 'LBH', 'LBD', 'LBA', 'PSH', 'PSD', 'PSA',
+       'WHH', 'WHD', 'WHA', 'SJH', 'SJD', 'SJA', 'VCH', 'VCD', 'VCA', 'Bb1X2',
+       'BbMxH', 'BbAvH', 'BbMxD', 'BbAvD', 'BbMxA', 'BbAvA', 'BbOU',
+       'BbMx>2.5', 'BbAv>2.5', 'BbMx<2.5', 'BbAv<2.5', 'BbAH', 'BbAHh',
+       'BbMxAHH', 'BbAvAHH', 'BbMxAHA', 'BbAvAHA', 'PSCH', 'PSCD', 'PSCA',
+       'GBH', 'GBD', 'GBA', 'SBH', 'SBD', 'SBA', 'BSH', 'BSD', 'BSA'],axis=1)
